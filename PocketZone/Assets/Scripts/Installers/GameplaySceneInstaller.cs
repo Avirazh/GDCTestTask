@@ -27,5 +27,6 @@ public class GameplaySceneInstaller : MonoInstaller
     private void BindCamera()
     {
         Container.Bind<CameraConfig>().FromInstance(_cameraConfig);
+        Container.Bind<CameraFollow>().FromComponentInHierarchy().AsSingle();
     }
 }

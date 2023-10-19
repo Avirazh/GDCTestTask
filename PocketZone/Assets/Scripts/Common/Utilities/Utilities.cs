@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public static class Vector2Extentions
+public static class Utilities
 {
     public static void RotateObjectToTarget(Transform objectTransform, Transform target)
     {
@@ -8,5 +8,9 @@ public static class Vector2Extentions
         float angle = Mathf.Atan2(localPosition.y, localPosition.x) * Mathf.Rad2Deg;
 
         objectTransform.Rotate(0, 0, angle);
+    }
+    public static int LayerMaskToLayer(LayerMask layerMask)
+    {
+        return (int)Mathf.Log(layerMask.value, 2);
     }
 }

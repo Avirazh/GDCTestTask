@@ -980,7 +980,7 @@ GameObject:
   - component: {fileID: 1663358891183194665}
   - component: {fileID: 330991181}
   - component: {fileID: 6302286999754450831}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1064,7 +1064,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Weapon: {fileID: 5811203475729697633, guid: aa1f7bb1c7c09e940b81c10639747caa, type: 3}
-  LayerMask:
+  TargetLayerMask:
     serializedVersion: 2
     m_Bits: 8
 --- !u!114 &330991181
@@ -1081,11 +1081,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _searchRadius: 7
   _gizmosColor: {r: 0.9150943, g: 0, b: 0, a: 1}
+  _searchIterationCooldown: 0.2
   _layerMask:
     serializedVersion: 2
-    m_Bits: 8
-  _searchIterationCooldown: 0.2
-  IsSearching: 1
+    m_Bits: 0
 --- !u!114 &6302286999754450831
 MonoBehaviour:
   m_ObjectHideFlags: 0

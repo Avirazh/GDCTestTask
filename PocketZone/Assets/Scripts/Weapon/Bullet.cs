@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Bullet : MonoBehaviour
 {
@@ -29,6 +28,7 @@ public class Bullet : MonoBehaviour
         if (_layerMask == (_layerMask | (1 << collision.gameObject.layer)))
         {
             Debug.Log(collision.gameObject.name);
+            //event here
             Destroy(gameObject);
         }
     }

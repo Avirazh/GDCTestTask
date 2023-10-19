@@ -4,18 +4,25 @@ using UnityEngine;
 public class TargetFinder : MonoBehaviour
 { 
     [SerializeField] private float _searchRadius;    
-    [SerializeField] private Color _gizmosColor;
     [SerializeField] private float _searchIterationCooldown;
 
-    private LayerMask _layerMask;
+    [Header("Debugging")]
+    [SerializeField] private Color _gizmosColor;
+
+    public LayerMask _layerMask;
     private Vector2 _center;
     private Transform _target;
 
     public Transform Target => _target;
-
     public bool IsSearching { get; set; }
-
     public LayerMask LayerMask { get; set; }
+
+    public void SetDependencies(float searchRadius, float searchIterationCooldown, Color gizmoColor)
+    {
+        _searchRadius = searchRadius;
+        _searchIterationCooldown = searchIterationCooldown;
+        _gizmosColor = gizmoColor;
+    }
 
     public void FindTarget(LayerMask layerMask)
     {
@@ -38,7 +45,7 @@ public class TargetFinder : MonoBehaviour
             _center = transform.position;
 
             var hitCollider = Physics2D.OverlapCircle(_center, _searchRadius, _layerMask);
-
+            Debug.Log($"searching... current hitCollider: {hitCollider}");
             if (hitCollider)
             {
                 _target = hitCollider.transform;
@@ -56,8 +63,11 @@ public class TargetFinder : MonoBehaviour
     }
 
     private void OnDrawGizmos()
-    {
-        Gizmos.color = _gizmosColor;
-        Gizmos.DrawWireSphere(_center, _searchRadius);       
+    {       
+        if (Target)
+            Gizmos.color = Color.green;
+        else 
+            Gizmos.color = _gizmosColor;
+        Gizmos.DrawWireSphere(_center, _searchRadius);
     }
 }

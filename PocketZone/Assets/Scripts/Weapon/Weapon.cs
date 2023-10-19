@@ -46,7 +46,7 @@ public class Weapon : MonoBehaviour, IWeapon
     {
         for (int i = 0; i < _weaponConfig.BulletsPerShot; i++)
         {
-            Vector2Extentions.RotateObjectToTarget(transform, target);
+            Utilities.RotateObjectToTarget(transform, target);
             CreateBullet(target);
 
             yield return new WaitForSeconds(cooldown);

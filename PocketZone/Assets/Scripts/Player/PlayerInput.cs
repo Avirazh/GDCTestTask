@@ -6,7 +6,7 @@ using Zenject;
 public class PlayerInput : MonoBehaviour, IMovable
 {
     [SerializeField] public GameObject Weapon;
-    [SerializeField] public LayerMask LayerMask;
+    [SerializeField] public LayerMask TargetLayerMask;
 
     private Button _shootButton;
     private Button _inventoryButton;
@@ -50,10 +50,10 @@ public class PlayerInput : MonoBehaviour, IMovable
 
     private void Start()
     {
-        _weaponHolder.SetDependencies(CreateWeapon().GetComponent<Weapon>(), LayerMask);
+        _weaponHolder.SetDependencies(CreateWeapon().GetComponent<Weapon>(), TargetLayerMask);
 
         _targetFinder.IsSearching = true;
-        _targetFinder.FindTarget(LayerMask);
+        _targetFinder.FindTarget(TargetLayerMask);
     }
 
     void FixedUpdate()
