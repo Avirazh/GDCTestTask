@@ -5,7 +5,7 @@ public class GameplaySceneInstaller : MonoInstaller
 {
     [Header("Player bindings")]
 
-    [SerializeField] private PlayerMovement _playerPrefab;
+    [SerializeField] private PlayerInput _playerPrefab;
     [SerializeField] private Transform _playerSpawnPoint;
     [SerializeField] private PlayerConfig _playerConfig;
 
@@ -21,8 +21,8 @@ public class GameplaySceneInstaller : MonoInstaller
     private void BindPlayer()
     {
         Container.Bind<PlayerConfig>().FromInstance(_playerConfig);
-        PlayerMovement player = Container.InstantiatePrefabForComponent<PlayerMovement>(_playerPrefab, _playerSpawnPoint.position, Quaternion.identity, null);
-        Container.BindInterfacesAndSelfTo<PlayerMovement>().FromInstance(player).AsSingle();
+        PlayerInput player = Container.InstantiatePrefabForComponent<PlayerInput>(_playerPrefab, _playerSpawnPoint.position, Quaternion.identity, null);
+        Container.BindInterfacesAndSelfTo<PlayerInput>().FromInstance(player).AsSingle();
     }
     private void BindCamera()
     {

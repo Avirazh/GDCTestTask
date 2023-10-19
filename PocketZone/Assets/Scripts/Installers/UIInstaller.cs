@@ -10,14 +10,10 @@ public class UIInstaller : MonoInstaller
 
     [SerializeField] private Joystick _joystick;
 
-    //[InspectorName("Game Buttons")]
-
-    //[SerializeField] private Button _fireButton;
-    //[SerializeField] private Button _inventoryButton;
-    //[SerializeField] private Button _pauseButton;
-
     public override void InstallBindings()
     {
         Container.Bind<Joystick>().FromInstance(_joystick);
+
+        Container.Bind<ButtonProvider>().FromComponentInHierarchy().AsSingle();
     }
 }
