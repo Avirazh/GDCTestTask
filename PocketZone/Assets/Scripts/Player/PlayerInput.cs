@@ -39,20 +39,23 @@ public class PlayerInput : MonoBehaviour, IMovable
         _inventoryButton.onClick.AddListener(OnInventoryButtonPressed);
     }
 
-    void Start()
+    private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _playerMovement = new UnitMovement(transform, _rigidbody);
 
         _weaponHolder = GetComponent<WeaponHolder>();
-        _targetFinder = GetComponent<TargetFinder>();
-
-        _weaponHolder.SetDependencies(CreateWeapon().GetComponent<Weapon>(), LayerMask);
+        _targetFinder = GetComponent<TargetFinder>();      
     }
-    private void Update()
+
+    private void Start()
     {
+        _weaponHolder.SetDependencies(CreateWeapon().GetComponent<Weapon>(), LayerMask);
 
+        _targetFinder.IsSearching = true;
+        _targetFinder.FindTarget(LayerMask);
     }
+
     void FixedUpdate()
     {
         _playerMovement.Move(new Vector2(_joystick.Horizontal, _joystick.Vertical), _playerConfig.Speed);
@@ -71,10 +74,12 @@ public class PlayerInput : MonoBehaviour, IMovable
         else
             _weaponHolder.ResetWeaponRotation();
     }
+
     private void OnInventoryButtonPressed() 
     {
 
     }
+
     private GameObject CreateWeapon()
     {
         return Instantiate(Weapon, transform);

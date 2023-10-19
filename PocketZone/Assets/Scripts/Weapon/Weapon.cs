@@ -10,7 +10,7 @@ public class Weapon : MonoBehaviour, IWeapon
 
     private int _bulletsLeft;
 
-    public LayerMask LayerMask;
+    [HideInInspector] public LayerMask LayerMask;
 
     private void Awake()
     {

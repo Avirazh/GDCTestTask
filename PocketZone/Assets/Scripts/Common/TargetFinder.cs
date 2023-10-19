@@ -5,23 +5,22 @@ public class TargetFinder : MonoBehaviour
 { 
     [SerializeField] private float _searchRadius;    
     [SerializeField] private Color _gizmosColor;
-    [SerializeField] private LayerMask _layerMask;
-
     [SerializeField] private float _searchIterationCooldown;
 
+    private LayerMask _layerMask;
     private Vector2 _center;
     private Transform _target;
 
     public Transform Target => _target;
 
-    public bool IsSearching = true;
-    private void Awake()
-    {
-        _center = transform.position;
-    }
+    public bool IsSearching { get; set; }
 
-    private void Start()
+    public LayerMask LayerMask { get; set; }
+
+    public void FindTarget(LayerMask layerMask)
     {
+        _layerMask = layerMask;
+
         StartCoroutine(FindTarget(IsSearching));
     }
 
