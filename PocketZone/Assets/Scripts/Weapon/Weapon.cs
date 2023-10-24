@@ -25,8 +25,7 @@ public class Weapon : MonoBehaviour, IWeapon
         else
         {
             StartCoroutine(ShootWithCooldownCoroutine(_weaponConfig.BulletsPerShotCooldown, target));           
-        }
-        
+        }      
     }
     public void Reload()
     {
@@ -34,9 +33,7 @@ public class Weapon : MonoBehaviour, IWeapon
     }
 
     private IEnumerator ReloadCoroutine(int reloadTime)
-    { 
-        Debug.Log("RELOADING");
-        
+    {         
         _bulletsLeft = _weaponConfig.MagazineSize;
 
         yield return new WaitForSeconds(reloadTime);
@@ -61,7 +58,5 @@ public class Weapon : MonoBehaviour, IWeapon
         bullet.SetDependencies(target, _weaponConfig.BulletSpeed, _weaponConfig.DamagePerBullet, LayerMask);
 
         _bulletsLeft--;
-
-        Debug.Log($"bullets left: {_bulletsLeft}");
     }
 }

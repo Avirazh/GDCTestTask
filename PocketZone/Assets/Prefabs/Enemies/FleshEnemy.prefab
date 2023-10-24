@@ -159,6 +159,8 @@ GameObject:
   - component: {fileID: 2654436682624029233}
   - component: {fileID: 7220571713637905376}
   - component: {fileID: 1400891878249593573}
+  - component: {fileID: 8880579846357531279}
+  - component: {fileID: 4436188893246444715}
   m_Layer: 0
   m_Name: FleshEnemy
   m_TagString: Untagged
@@ -183,6 +185,7 @@ Transform:
   - {fileID: 2918497391787147301}
   - {fileID: 1140967093987120255}
   - {fileID: 9212420639766098853}
+  - {fileID: 4370415809283736037}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -233,6 +236,33 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &8880579846357531279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4265000073011509232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ded74ec0b4f8514d9b2da444028cf44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 100
+  _healthBar: {fileID: 1374085213713814296, guid: ecef547a7e2f01a4ea67adde1e23c51a, type: 3}
+  _healthBarPosition: {fileID: 4370415809283736037}
+--- !u!114 &4436188893246444715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4265000073011509232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1b8960573ea6604ea5205bcdb60976c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4349498019119148662
 GameObject:
   m_ObjectHideFlags: 0
@@ -633,3 +663,34 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &8981474790915648991
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4370415809283736037}
+  m_Layer: 0
+  m_Name: HealthBarPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4370415809283736037
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8981474790915648991}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.018790245, y: 2.57, z: 0.108402416}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2654436682624029233}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

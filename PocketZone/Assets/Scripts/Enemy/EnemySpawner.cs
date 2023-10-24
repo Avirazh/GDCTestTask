@@ -1,12 +1,17 @@
+using ModestTree;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
 public class EnemySpawner : MonoBehaviour
 {
+    [SerializeField] private int _enemiesToSpawn;
+
+    [Header("Layer masks")]
     [SerializeField] private LayerMask _targetLayerMask;
     [SerializeField] private LayerMask _spawnLayerMask;
 
+    [Header("Enemy configs")]
     [SerializeField] private List<EnemyConfig> _enemyTypes;
 
     [Header("Two transforms creating an area where enemies will spawn")]
@@ -15,6 +20,8 @@ public class EnemySpawner : MonoBehaviour
 
     [Header("Debugging")]
     public Color GizmoColor;
+
+    private List<EnemyInput> _enemies;
 
     private Camera _camera;
 
@@ -26,9 +33,25 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-        SpawnEnemyByDifficulty(EnemyDifficulty.Easy);
-        SpawnEnemyByDifficulty(EnemyDifficulty.Easy);
-        SpawnEnemyByDifficulty(EnemyDifficulty.Easy);
+        _enemies = new List<EnemyInput>();
+
+        SpawnEnemies(_enemiesToSpawn);
+    }
+
+    private void Update()
+    {
+        if(_enemies.IsEmpty())
+        {
+            SpawnEnemies(_enemiesToSpawn);
+        }
+    }
+
+    private void SpawnEnemies(int enemiesToSpawn)
+    {
+        for(int i = 0; i < enemiesToSpawn; i++) 
+        {
+            SpawnEnemyByDifficulty(EnemyDifficulty.Easy);
+        }
     }
 
     private void SpawnEnemyByDifficulty(EnemyDifficulty difficulty)
@@ -39,6 +62,11 @@ public class EnemySpawner : MonoBehaviour
 
         enemyToSpawn.SetDependencies(_spawnLayerMask, _targetLayerMask, enemyConfig);
 
+        if (enemyToSpawn.TryGetComponent<Health>(out var health))
+        {
+            _enemies.Add(enemyToSpawn);
+            health.OnDeath += RemoveFromList;
+        }
     }
     private Vector3 FindPlaceToSpawn()
     {
@@ -63,6 +91,11 @@ public class EnemySpawner : MonoBehaviour
             spawnPosition = GenerateRandomPosition();
         }
         return spawnPosition;
+    }
+
+    private void RemoveFromList(GameObject enemy)
+    {
+        _enemies.Remove(enemy.GetComponent<EnemyInput>());
     }
 
     private void OnDrawGizmos()

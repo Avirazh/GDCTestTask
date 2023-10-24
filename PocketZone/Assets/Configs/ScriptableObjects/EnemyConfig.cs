@@ -9,6 +9,9 @@ public class EnemyConfig : ScriptableObject
 
     public float AggroRadius;
     public float Speed;
+
+    public float AttackRange;
+    public float AttackCooldown;
 }
 public enum EnemyDifficulty
 {

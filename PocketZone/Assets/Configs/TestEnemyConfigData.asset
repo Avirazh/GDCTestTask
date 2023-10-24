@@ -16,3 +16,6 @@ MonoBehaviour:
   Damage: 10
   Difficulty: 0
   AggroRadius: 9
+  Speed: 5
+  AttackRange: 6.1
+  AttackCooldown: 1

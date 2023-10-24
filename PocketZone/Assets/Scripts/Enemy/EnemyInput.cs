@@ -3,8 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(TargetFinder), typeof(Rigidbody2D))]
 public class EnemyInput : MonoBehaviour
 {
-    private LayerMask _targetLayerMask;
-    private EnemyConfig _enemyConfig;
+    private const float SEARCH_ITERATION_COOLDOWN = 0.2f;
 
     private TargetFinder _targetFinder;
     private UnitMovement _movement;
@@ -12,7 +11,8 @@ public class EnemyInput : MonoBehaviour
 
     private Vector3 spawnPosition;
 
-    private const float SEARCH_ITERATION_COOLDOWN = 0.2f;
+    private LayerMask _targetLayerMask;
+    private EnemyConfig _enemyConfig;
 
     public void SetDependencies(LayerMask spawnLayerMask, LayerMask targetLayerMask, EnemyConfig enemyConfig)
     {
@@ -27,6 +27,7 @@ public class EnemyInput : MonoBehaviour
 
         SetTargetFinder();
         SetUnitMovement();
+        SetAttack();
     }
 
     private void FixedUpdate()
@@ -56,5 +57,11 @@ public class EnemyInput : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _movement = new UnitMovement(transform, _rigidbody);
+    }
+
+    private void SetAttack()
+    {
+        if(TryGetComponent<MeleeEnemyAttack>(out var meleeEnemyAttack))
+            meleeEnemyAttack.SetDependencies(_targetFinder, _enemyConfig.Damage, _enemyConfig.AttackRange, _enemyConfig.AttackCooldown);
     }
 }

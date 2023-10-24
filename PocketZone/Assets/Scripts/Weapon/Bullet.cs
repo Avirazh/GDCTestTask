@@ -28,7 +28,9 @@ public class Bullet : MonoBehaviour
         if (_layerMask == (_layerMask | (1 << collision.gameObject.layer)))
         {
             Debug.Log(collision.gameObject.name);
-            //event here
+
+            collision.GetComponent<Health>().ApplyDamage(_damage);
+
             Destroy(gameObject);
         }
     }

@@ -8,21 +8,19 @@ public class PlayerInput : MonoBehaviour, IMovable
     [SerializeField] public GameObject Weapon;
     [SerializeField] public LayerMask TargetLayerMask;
 
-    private Button _shootButton;
-    private Button _inventoryButton;
-
     private Rigidbody2D _rigidbody;
-    private Joystick _joystick;
     private UnitMovement _playerMovement;
     
     private WeaponHolder _weaponHolder;
     private TargetFinder _targetFinder;
 
+    private Button _shootButton;
+    private Button _inventoryButton;
+    private Joystick _joystick;
     private PlayerConfig _playerConfig;
 
     public float Speed => _playerConfig.Speed;
     public Transform Transform => transform;
-
 
     [Inject]
     private void Construct(ButtonProvider buttonProvider, Joystick joystick, PlayerConfig playerConfig)

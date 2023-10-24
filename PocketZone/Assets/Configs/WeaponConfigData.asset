@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: WeaponConfigData
   m_EditorClassIdentifier: 
   Cooldown: 2
-  DamagePerBullet: 2
+  DamagePerBullet: 33.4
   BulletSpeed: 30
   MagazineSize: 5
   ReloadTime: 1
-  BulletsPerShot: 2
-  BulletsPerShotCooldown: 0
+  BulletsPerShot: 1
+  BulletsPerShotCooldown: 1

@@ -15,7 +15,7 @@ public class TargetFinder : MonoBehaviour
 
     public Transform Target => _target;
     public bool IsSearching { get; set; }
-    public LayerMask LayerMask { get; set; }
+    public LayerMask LayerMask => _layerMask;
 
     public void SetDependencies(float searchRadius, float searchIterationCooldown, Color gizmoColor)
     {
@@ -45,18 +45,18 @@ public class TargetFinder : MonoBehaviour
             _center = transform.position;
 
             var hitCollider = Physics2D.OverlapCircle(_center, _searchRadius, _layerMask);
-            Debug.Log($"searching... current hitCollider: {hitCollider}");
+            //Debug.Log($"searching... current hitCollider: {hitCollider}");
             if (hitCollider)
             {
                 _target = hitCollider.transform;
-                Debug.Log($"Target finded: {hitCollider.gameObject.name}");
+                //Debug.Log($"Target finded: {hitCollider.gameObject.name}");
 
                 
             }            
             if (_target && Vector2.Distance((Vector2)_target.position, _center) > _searchRadius)
             {
                 _target = null;
-                Debug.Log($"No target avaliable: _target = {_target}, Target = {Target}");
+                //Debug.Log($"No target avaliable: _target = {_target}, Target = {Target}");
             }
             yield return new WaitForSeconds(_searchIterationCooldown);
         }        
